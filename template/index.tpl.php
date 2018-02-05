@@ -1,0 +1,3 @@
+<?print $a;?><br>
+<?print $b;?>
+
