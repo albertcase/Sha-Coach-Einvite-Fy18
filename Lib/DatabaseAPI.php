@@ -146,19 +146,18 @@ class DatabaseAPI {
 	}
 
 	public function checkinActive($code){
-		$sql = "SELECT `openid`,`awardcode`,`callnumber`,`meettime`,`meet1status`,`meet2status`,`dinnerstatus`,`guide`,`memname` FROM `coach_award` WHERE `awardcode` = ? ";
+		$sql = "SELECT `openid`,`awardcode`,`callnumber`,`meettime`,`checkinstatus`,`giftstatus`,`dinnerstatus`,`guide`,`memname` FROM `coach_award` WHERE `awardcode` = ? ";
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $code);
 		$res->execute();
-		$res->bind_result($openid,$awardcode,$callnumber,$meettime,$meet1status,$meet2status,$dinnerstatus,$guide,$memname);
+		$res->bind_result($openid,$awardcode,$callnumber,$meettime,$checkinstatus,$giftstatus,$dinnerstatus,$guide,$memname);
 		if($res->fetch()) {
 			$result = new \stdClass();
 			$result->awardcode = $awardcode;
 			$result->callnumber = $callnumber;
-			$result->meettime = $meettime;
-			$result->meet1status = $meet1status;
-			$result->meet2status = $meet2status;
-			$result->dinnerstatus = $dinnerstatus;
+			$result->checkinstatus = (string) $checkinstatus;
+			$result->giftstatus = (string) $giftstatus;
+			// $result->dinnerstatus = $dinnerstatus;
 			$result->guide = $guide;
 			$result->memname = $memname;
 			return $result;
@@ -508,5 +507,53 @@ class DatabaseAPI {
 			return $num;
 		}
 		return 0;
+	}
+
+	public function isCheckIn($awardcode) {
+		$sql = "SELECT `checkinstatus` FROM `coach_award` WHERE `awardcode` = ? ";
+		$res = $this->db->prepare($sql);
+		$res->bind_param("s", $awardcode);
+		$res->execute();
+		$res->bind_result($checkinstatus);
+		if($res->fetch()) {
+			$result = new \stdClass();
+			$result->checkinstatus = $checkinstatus;
+			return $result;
+		}
+		return false;
+	}
+
+	public function checkin($awardcode, $status) {
+		$sql = "UPDATE `coach_award` SET `checkinstatus` = ? WHERE `awardcode` = ? ";
+		$res = $this->db->prepare($sql);
+		$time = time();
+		$res->bind_param("ss", $status, $awardcode);
+		if($res->execute())
+			return true;
+		return false;
+	}
+
+	public function isGift($awardcode) {
+		$sql = "SELECT `giftstatus` FROM `coach_award` WHERE `awardcode` = ? ";
+		$res = $this->db->prepare($sql);
+		$res->bind_param("s", $awardcode);
+		$res->execute();
+		$res->bind_result($giftstatus);
+		if($res->fetch()) {
+			$result = new \stdClass();
+			$result->giftstatus = $giftstatus;
+			return $result;
+		}
+		return false;
+	}
+
+	public function getGift($awardcode, $status) {
+		$sql = "UPDATE `coach_award` SET `giftstatus` = ? WHERE `awardcode` = ? ";
+		$res = $this->db->prepare($sql);
+		$time = time();
+		$res->bind_param("ss", $status, $awardcode);
+		if($res->execute())
+			return true;
+		return false;
 	}
 }

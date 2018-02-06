@@ -31,7 +31,7 @@ define("JSSDK_ACCESS", '{
 define("DBHOST", '127.0.0.1');
 define("DBUSER", 'root');
 define("DBPASS", '');
-define("DBNAME", 'coach_einvite');
+define("DBNAME", 'coach_einvite_fy18');
 
 define("ENCRYPT_KEY", '29FB77CB8E94B358');
 define("ENCRYPT_IV", '6E4CAB2EAAF32E90');

@@ -83,15 +83,6 @@ class ApiController extends Controller {
 			'name' => 'jssdk for coach_einvite',
 			'domain' => 'http://vipinvitation.samesamechina.com'
 		);
-		// $data = array(
-		// 	'code' => 200,
-		// 	'data' => array(
-		// 		'openid' => '1qazxsw23edc',
-		// 		'nickname' => 'dirc',
-		// 		'headimgurl' => 'asdasdasdasdasdasdasd'
-		// 	)
-		// );
-		// print_r($_SERVER);
 		return $this->dataPrint($data);
 	}
 
@@ -105,6 +96,50 @@ class ApiController extends Controller {
 		$_db = new \Lib\DatabaseAPI();
 		$_db->insertNewUser($data);
 		return $this->Response('success');
+	}
+
+	public function entranceAction() {
+		$param = json_decode(file_get_contents("php://input"));
+        if(is_null($param))
+        	return $this->dataPrint(['status' => 101, "msg" => "参数错误！"]);
+        $_db = new \Lib\DatabaseAPI();
+        switch ($param->op) {
+        	case 'checkin':
+        		$checkinStatus = $_db->isCheckIn($param->awardcode);
+        		//qrcode failed
+        		if(!$checkinStatus)
+        			return $this->dataPrint(['status' => 102, "msg" => "二维码无效！"]);
+
+        		//签到和取消签到
+        		if($checkinStatus->checkinstatus == 0){
+        			$_db->checkin($param->awardcode, 1);
+        			return $this->dataPrint(['status' => 200, "msg" => "签到成功！"]);
+        		} else {
+        			$_db->checkin($param->awardcode, 0);
+    				return $this->dataPrint(['status' => 201, "msg" => "取消签到成功！"]);
+        		}
+        		break;
+        	
+        	case 'gift':
+        		$giftStatus= $_db->isGift($param->awardcode);
+        		//qrcode failed
+        		if(!$giftStatus)
+        			return $this->dataPrint(['status' => 102, "msg" => "二维码无效！"]);
+
+        		//领取礼物
+        		if($giftStatus->giftstatus == 0){
+        			$_db->getGift($param->awardcode, 1);
+        			return $this->dataPrint(['status' => 202, "msg" => "礼物领取成功！"]);
+        		} else {
+        			$_db->getGift($param->awardcode, 0);
+    				return $this->dataPrint(['status' => 203, "msg" => "取消领取礼物成功！"]);
+        		}
+        		break;
+
+        	default:
+        		break;
+        }
+        exit;
 	}
 
 }

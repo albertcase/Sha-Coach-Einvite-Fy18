@@ -22,3 +22,6 @@ $routers['/api/downloaduserinfo'] = array('EInviteBundle\Api', 'downloaduserinfo
 $routers['/api/downloaduserinfo2'] = array('EInviteBundle\Api', 'downloaduserinfo2');
 $routers['/api/logout'] = array('EInviteBundle\Api', 'logout');
 // $routers['/test/%/aa/%'] = array('EInviteBundle\Site', 'test');
+
+//入场选择操作
+$routers['/api/entrance'] = array('EInviteBundle\Api', 'entrance');

@@ -100,9 +100,8 @@
         "awardcode": "87baf2d73bd0c36056978aa726517b35",
         "callnumber": "555555",
         "meettime": "1",//几点场次
-        "meet1status": "0",//13：30的进场状态
-        "meet2status": "0",//15：30的进场状态
-        "dinnerstatus": "0",//晚宴的进场状态
+        "checkinstatus": "0",//签到入场状态
+        "giftstatus": "1",//领取礼物状态
         "guide": "小镇贵宾",//SA后参数
         "memname": "aaaa"，//用户名
       }
@@ -117,80 +116,48 @@
 		msg: '输入错误'
 	}
 	
-###入场签到
-**url:** /api/loginmeets1
+###入场签到 & 领取礼物
+**url:** /api/entrance
 
 **Method:** POST
 
-**param:**
+Content-Type: `application/json`
 
+**param:**
+签到入场
 	{
-		awardcode: '123456'
+		"awardcode": "123456",
+		"op": "checkin"
+	}
+领取礼物
+	{
+		"awardcode": "123456",
+		"op": "gift"
 	}
 
 **feedbacks:**
 
 	{
-		code: '10',
-		msg: '成功'
+		code: '101',
+		msg: '参数错误！'
 	}
 	{
-		code: '9',
-		msg: '失败'
+		code: '102',
+		msg: '二维码无效！'
 	}
 	{
-		code: '11',
-		msg: '输入错误'
-	}
-	
-###领取礼物
-**url:** /api/loginmeets2
-
-**Method:** POST
-
-**param:**
-
-	{
-		awardcode: '123456'
-	}
-
-**feedbacks:**
-
-	{
-		code: '10',
-		msg: '成功'
+		code: '200',
+		msg: '签到成功！'
 	}
 	{
-		code: '9',
-		msg: '失败'
+		code: '201',
+		msg: '取消签到成功！'
 	}
 	{
-		code: '11',
-		msg: '输入错误'
-	}
-	
-###晚宴签到
-**url:** /api/logindinner
-
-**Method:** POST
-
-**param:**
-
-	{
-		awardcode: '123456'
-	}
-
-**feedbacks:**
-
-	{
-		code: '10',
-		msg: '成功'
+		code: '202',
+		msg: '礼物领取成功！'
 	}
 	{
-		code: '9',
-		msg: '失败'
-	}
-	{
-		code: '11',
-		msg: '输入错误'
+		code: '203',
+		msg: '取消领取礼物成功！'
 	}
