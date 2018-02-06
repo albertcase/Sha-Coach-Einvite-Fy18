@@ -16,17 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="/vfile/pc/css/style.css" />
 </head>
 
-<?php
-	$city = isset($city)?$city:'';
-	if($city == "suzhou" || $city == "xian" || $city == "kunming"){
-		
-	}else{
-		$city = "other";
-	}
-?>
 
-
-<body class="<?php print $city;?>">
+<body>
 
 <script src="/vfile/js/jquery.js"></script>
 <script src="/vfile/js/PxLoader.js"></script>
@@ -54,26 +45,21 @@
 				<img src="/vfile/pc/img/logo.png" >
 			</a>
 			<div class="slogan">
-				<img src="/vfile/pc/img/<?php print $city;?>/slogan.png" >
+				<img src="/vfile/pc/img/slogan.png" >
 			</div>
 			<div class="slidecon">
 	
 				<div class="slideModel checkin">
 					<p>
-						尊敬的<span class="uname">--</span>欢迎您出席<span class="ntime">--</span>的活动
+						尊敬的<span class="uname">--</span>欢迎您出席活动
 					</p>
 					<p>
 						SA: <span class="usa">--</span>
 					</p>
 
 					<ul class="checklist">
-						<li>13: 30活动签到</li>
-						<li>15: 30活动签到</li>
-						<?php
-							if($city == "suzhou"){
-								echo '<li>晚宴签到</li>';
-							}
-						?>	
+						<li data-type="checkin">签到入场</li>
+						<li data-type="gift">领取礼物</li>
 					</ul>
 				</div>
 
@@ -95,8 +81,7 @@
 <script type="text/javascript">
 	var eventMethod = {
 		scanStatus: false,
-		ajaxSrcArr: ["/api/loginmeets1", "/api/loginmeets2", "/api/logindinner"],
-		ntArr: ["", "13：30", "15：30"], 
+		ajaxSrcArr: "/api/entrance",
 		visibleFun: function(n){
 			$(".slideModel").css({"visibility": "hidden"});
 			$(n).css({"visibility": "visible"});
@@ -112,7 +97,7 @@
 			//console.log(n);
 			$(".uname").html(n['uname']);
 			$(".usa").html(n['usa']);
-			console.log(n);
+			// console.log(n);
 			$(".checklist li").removeClass("active");
 			if(n['ci0'] != "0"){
 				$(".checklist li").eq(0).addClass("active");
@@ -125,8 +110,6 @@
 			if(n['ci2'] != "0"){
 				$(".checklist li").eq(2).addClass("active");
 			}
-
-			$(".ntime").html(this.ntArr[n['nt']]);
 
 			$(".checklist").attr("data-code", n['tel']);
 
@@ -149,8 +132,8 @@
 	eventMethod.focusFun("#identifier");
 
 	var LoadingImg = [
-        "/vfile/pc/img/other/bg.jpg",
-         "/vfile/pc/img/other/slogan.png",
+        "/vfile/pc/img/bg.jpg",
+         "/vfile/pc/img/slogan.png",
         "/vfile/pc/img/logo.png"
     ],setT;
 
@@ -236,18 +219,19 @@
     
 
     $(".checklist").delegate("li", "click", function(event){
-
+    	var clickType = $(this).attr("data-type"),
+    		dataAwardcode = $(".checklist").attr("data-awardcode");
     	var self = $(this),
 	    	lmPushData = {
-		    	awardcode: $(".checklist").attr("data-awardcode")
-		    },
-		    _index = self.index();
+	    		op: clickType,
+		    	awardcode: dataAwardcode
+		    };
     	
     	if(self.hasClass("disable")) return false;
 
     	self.addClass("disable");
 
-    	pfun.ajaxFun("post", eventMethod.ajaxSrcArr[_index], lmPushData, "json", lmCallback);
+    	pfun.ajaxFun("post", eventMethod.ajaxSrcArr, lmPushData, "json", lmCallback);
 
     	function lmCallback(data){
 
@@ -257,16 +241,14 @@
 		    	}else{
 		    		self.addClass('active')
 		    	}
-    		}else{
-    			pfun.formErrorTips(data.msg);
     		}
-
+    		pfun.formErrorTips(data.msg);
     		self.removeClass("disable");
 
     		eventMethod.focusFun("#identifier");
     	}
 
-    	eventMethod.stopBubble(event);//组织冒泡  
+    	eventMethod.stopBubble(event);//阻止冒泡  
     	
     })
 

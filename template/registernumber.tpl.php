@@ -17,18 +17,8 @@
 	<link rel="stylesheet" type="text/css" href="/vfile/css/style.css" />
 </head>
 
-<?php
-	$city = isset($city)?$city:'';
-	$needSubscribe = isset($needSubscribe)?$needSubscribe:FALSE;
 
-	if($city == "suzhou" || $city == "xian" || $city == "kunming"){
-		
-	}else{
-		$city = "other";
-	}
-?>
-
-<body ng-app="app" class="<?php print $city;?>">
+<body ng-app="app">
 <script src="http://coach.samesamechina.com/api/v1/js/049df0b9-8261-45ca-8d27-f860d7e7452b/wechat?v=001"></script>
 <script src="/vfile/js/jquery.js"></script>
 <script src="/vfile/js/PxLoader.js"></script>
@@ -71,18 +61,18 @@ top: 30%; z-index: 11; width: 100%;
 	<div class="container">
 		<img src="/vfile/img/logo.png" width="100%" alt="coach" class="logo">
 
-		<img src="/vfile/img/<?php print $city;?>/text-1.png" width="100%" >
+		<img src="/vfile/img/slogan.png" width="100%" >
 		
 		<div class="modelcon ycenter">
 				<div class="telArea">
 					<?php
 						if(!$needSubscribe){
-							echo '<img src="/vfile/img/text-2.png" width="100%" >
+							echo '<img src="/vfile/img/tel-tips.png" width="100%" >
 									<div class="telInput">
 										<input type="tel" maxlength="6" size="6">
 									</div>';
 						}else{
-							echo '<img src="/vfile/img/xian/attention.png" width="100%" >';
+							echo '<img src="/vfile/img/attention.png" width="100%" >';
 						}
 					?>	
 
@@ -122,38 +112,30 @@ top: 30%; z-index: 11; width: 100%;
 	
 		<?php
 			if(!$needSubscribe){
-				$str = '';
-				if($city != "suzhou"){
-					$str =  '<a class="ruleLink" href="http://mp.weixin.qq.com/s/5kqTKrpxTk0SuwEtSJzBVg" target="_blank"><img src="/vfile/img/rulelink.png" width="25%" /></a>';
-				}
 				echo '<div class="btnArea">
 						<span class="btn receive-btn btnshow"><a href="javascript:;"></a><img src="/vfile/img/receive-btn.png" width="100%" alt="领取"></span>
 						<span class="btn re-enter-btn"><a href="javascript:;"></a><img src="/vfile/img/re-enter-btn.png" width="100%" alt="重新输入"></span>
-						'.$str.'
 					</div>';
 			}
 		?>	
 
 		
-
+<!-- <a class="ruleLink" href="http://mp.weixin.qq.com/s/5kqTKrpxTk0SuwEtSJzBVg" target="_blank"><img src="/vfile/img/rulelink.png" width="25%" /></a> -->
 	</div>
 </div>
 <script src="/vfile/js/public.js"></script>
 
 <script type="text/javascript">
 	// needSubscribe 判断是否关注 0/1
-	var city = "<?php print $city;?>"; 
 
 	var LoadingImg = [
-        "/vfile/img/other/bg.jpg",
-        "/vfile/img/other/info-1.png",
-        "/vfile/img/other/info-2.png",
+        "/vfile/img/bg.jpg",
+        "/vfile/img/info-1.png",
         "/vfile/img/logo.png",
         "/vfile/img/re-enter-btn.png",
         "/vfile/img/receive-btn.png",
         "/vfile/img/share.png",
-        "/vfile/img/other/text-1.png",
-        "/vfile/img/text-2.png",
+        "/vfile/img/slogan.png"
     ];
 
     pfun.loadingFnDoing(LoadingImg, function(){
@@ -169,10 +151,6 @@ top: 30%; z-index: 11; width: 100%;
 	var coachEinviteMethod = {
 		count: "<?php print $trytimes;?>",
 		getNum: function(){
-			// var telLi = $(".telArea li");
-			// return $.map(telLi, function(v, k){
-			// 	return $(v).find("input").val();
-			// }).join("");
 			return $(".telInput input").val();
 		},
 		btnShow: function(n){
@@ -209,7 +187,7 @@ top: 30%; z-index: 11; width: 100%;
 			$(this).addClass('disable');
 			var submitPushData = {
 				"callnumber": _gn,
-				"city": city
+				"city": 'suzhou'
 			}
 			pfun.ajaxFun("POST", "/api/submit", submitPushData, "json", submitCallback);
 		}

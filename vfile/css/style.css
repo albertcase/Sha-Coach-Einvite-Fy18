@@ -6,26 +6,11 @@ html, body{
 
 body{
     position: relative;
-    background: #000 url('../img/other/bg.jpg') no-repeat center top;
+    background: #000 url('../img/bg.jpg') no-repeat center top;
     background-size: 100% auto;
     text-align: center;
 
     -webkit-font-smoothing: antialiased;
-}
-
-body.suzhou{
-    background: #000 url('../img/suzhou/bg.jpg') no-repeat center top;
-    background-size: 100% auto;
-}
-
-body.xian{
-    background: #000 url('../img/xian/bg.jpg') no-repeat center top;
-    background-size: 100% auto;
-}
-
-body.kunming{
-    background: #000 url('../img/kunming/bg.jpg') no-repeat center top;
-    background-size: cover;
 }
 
 .ycenter{
@@ -52,17 +37,8 @@ body.kunming{
 .container{
     width: 80%;
     height: 90%;
-    background: #fff;
     position: relative;
     display: inline-block;
-}
-
-body.xian .container{
-    background: rgba(255,255,255,.9);
-}
-
-body.kunming .container{
-    background: rgba(255,255,255,.9);
 }
 
 .logo{
@@ -112,7 +88,7 @@ body.kunming .container{
 .errorTips{
     width: 100%;
     height: 100%;
-    background: #fff;
+    background: #edeadb;
     text-align: center;
     position: absolute;
     left: 0;
@@ -210,6 +186,22 @@ body.kunming .container{
     color: #000;
     font-size: 1.2rem;
     display: inline-block;
+}
+
+.contactInfo{
+    margin: 16px 0 0 0;
+    position: relative;
+    display: inline-block;
+}
+
+.contactInfo a{
+    width: 60%;
+    height: 27px;
+    position: absolute;
+    left: 50%;
+    bottom: -12%;
+    z-index: 2;
+    margin: 0 0 0 -30%;
 }
 
 
