@@ -116,7 +116,7 @@ class ApiController extends Controller {
         			return $this->dataPrint(['status' => 200, "msg" => "签到成功！"]);
         		} else {
         			$_db->checkin($param->awardcode, 0);
-    				return $this->dataPrint(['status' => 201, "msg" => "取消签到成功！"]);
+    				return $this->dataPrint(['status' => 201, "msg" => "取消签到！"]);
         		}
         		break;
         	
@@ -132,7 +132,7 @@ class ApiController extends Controller {
         			return $this->dataPrint(['status' => 202, "msg" => "礼物领取成功！"]);
         		} else {
         			$_db->getGift($param->awardcode, 0);
-    				return $this->dataPrint(['status' => 203, "msg" => "取消领取礼物成功！"]);
+    				return $this->dataPrint(['status' => 203, "msg" => "取消领取礼物！"]);
         		}
         		break;
 
