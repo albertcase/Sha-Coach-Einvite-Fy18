@@ -35,7 +35,7 @@ body{
 }
 
 .container{
-    width: 80%;
+    width: 79.4%;
     height: 90%;
     position: relative;
     display: inline-block;
@@ -46,22 +46,18 @@ body{
     margin: 9% 0 7% 0;
 }
 
-.telArea{
-    margin: 0 0 16% 0;
-}
-
 .telInput{
     width: 80%;
     position: relative;
-    margin: 9% 0;
+    margin: 9% 0 15% 0;
     display: inline-block;
 }
 
 .telInput input{
     width: 78%;   /*57%*/
-    border: 1px #e2e2e2 solid;
+    border: 1px #999999 solid;
     border-radius: 2%;
-    background: #fafafa;
+    background: #fff;
     height: 36px;
     line-height: 36px;
     display: inline-block;
@@ -79,6 +75,10 @@ body{
     width: 100%;
     height: 66%;
     position: relative;
+}
+.modelcon.registerNumber{
+    height: auto;
+    margin: 16% 0 0 0;
 }
 
 #conscroll{
@@ -109,11 +109,7 @@ body{
 
 
 .btnArea{
-    position: relative;
-    left: 0;
-    bottom: 18em;
     width: 100%;
-    z-index: 3;
 }
 
 .btnArea .ruleLink{
@@ -127,7 +123,7 @@ body{
 }
 
 .btn{
-    margin: 18% 0;
+    margin: 6% 0;
     position: relative;
     display: none;
 }
@@ -202,6 +198,11 @@ body{
     bottom: -12%;
     z-index: 2;
     margin: 0 0 0 -30%;
+}
+
+
+.opacity0{
+    opacity: 0;
 }
 
 

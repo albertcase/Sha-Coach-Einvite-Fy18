@@ -61,9 +61,9 @@ top: 30%; z-index: 11; width: 100%;
 	<div class="container">
 		<img src="/vfile/img/logo.png" width="100%" alt="coach" class="logo">
 
-		<img src="/vfile/img/slogan.png" width="100%" >
+		<img src="/vfile/img/slogan.png" class="slogan" width="100%" >
 		
-		<div class="modelcon ycenter">
+		<div class="modelcon registerNumber ycenter">
 				<div class="telArea">
 					<?php
 						if(!$needSubscribe){
@@ -143,6 +143,7 @@ top: 30%; z-index: 11; width: 100%;
     		$(".errorTips .etcon em").html(coachEinviteMethod.count);
     		coachEinviteMethod.btnShow();
     		$(".errorTips").css({"visibility": "visible"});
+    		$(".slogan").css({"visibility": "hidden"});
     	}
 
     	$(".loading").css({"visibility": "hidden"});
@@ -169,9 +170,11 @@ top: 30%; z-index: 11; width: 100%;
 				this.btnShow('re-enter-btn');
 			}
 			$(".errorTips").css({"visibility": "visible"});
+			$(".slogan").css({"visibility": "hidden"});
 		},
 		rewrite: function(){
 			$(".errorTips").css({"visibility": "hidden"});
+			$(".slogan").css({"visibility": "visible"});
 			this.btnShow('receive-btn');
 			$(".telInput input").val("");
 		}
