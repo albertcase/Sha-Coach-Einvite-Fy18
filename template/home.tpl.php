@@ -99,16 +99,12 @@
 			$(".usa").html(n['usa']);
 			// console.log(n);
 			$(".checklist li").removeClass("active");
-			if(n['ci0'] != "0"){
+			if(n['checkInStatus'] != "0"){
 				$(".checklist li").eq(0).addClass("active");
 			}
 
-			if(n['ci1'] != "0"){
+			if(n['giftStatus'] != "0"){
 				$(".checklist li").eq(1).addClass("active");
-			}
-
-			if(n['ci2'] != "0"){
-				$(".checklist li").eq(2).addClass("active");
 			}
 
 			$(".checklist").attr("data-code", n['tel']);
@@ -192,10 +188,8 @@
         	var databox = {
         		'uname': result.data.memname, 
         		'usa': result.data.guide, 
-        		'ci0': result.data.meet1status, 
-        		'ci1': result.data.meet2status, 
-        		'ci2': result.data.dinnerstatus, 
-        		'nt': result.data.meettime,
+        		'checkInStatus': result.data.checkinstatus,
+        		'giftStatus': result.data.giftstatus,
         		'tel': result.data.callnumber,
         		'awardcode': result.data.awardcode
         	}
@@ -223,25 +217,23 @@
     		dataAwardcode = $(".checklist").attr("data-awardcode");
     	var self = $(this),
 	    	lmPushData = {
-	    		op: clickType,
-		    	awardcode: dataAwardcode
+	    		'op': clickType,
+		    	'awardcode': dataAwardcode
 		    };
     	
     	if(self.hasClass("disable")) return false;
 
     	self.addClass("disable");
 
-    	pfun.ajaxFun("post", eventMethod.ajaxSrcArr, lmPushData, "json", lmCallback);
+    	pfun.ajaxFun("post", eventMethod.ajaxSrcArr, JSON.stringify(lmPushData), "json", lmCallback);
 
     	function lmCallback(data){
 
-    		if(data.code == 10){
-    			if(self.hasClass('active')){
-		    		self.removeClass('active');
-		    	}else{
-		    		self.addClass('active')
-		    	}
-    		}
+    		if(self.hasClass('active')){
+	    		self.removeClass('active');
+	    	}else{
+	    		self.addClass('active')
+	    	}
     		pfun.formErrorTips(data.msg);
     		self.removeClass("disable");
 
