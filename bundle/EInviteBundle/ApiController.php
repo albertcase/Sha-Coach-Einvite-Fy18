@@ -87,7 +87,7 @@ class ApiController extends Controller {
 	}
 
 	public function demonloginAction() {
-		$_SESSION['openid'] = 'wwssssssssssssssssadawdawad';
+		$_SESSION['openid'] = 'oKCDxjivJ92ky4dxLT8dt1jcXtn4';
 		$data = array(
 			'openid' => 'oKCDxjivJ92ky4dxLT8dt1jcXtn4',
 			'nickname' => 'nickname',
