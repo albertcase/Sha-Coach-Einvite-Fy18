@@ -11,3 +11,11 @@
 PC端：
 http://10.77.11.19:9431/home
 
+
+
+
+发布信息：
+ssh webown@106.75.93.142
+1q2w3e
+cd scripts
+./coach-einvite.sh

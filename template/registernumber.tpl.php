@@ -103,7 +103,8 @@ top: 30%; z-index: 11; width: 100%;
 				<!-- 错误提示 -->
 				<div class="errorTips ycenter">
 					<div class="etcon">
-						<h2>很抱歉</h2><p>该号码验证失败<br>还有<em>2</em>次输入机会</p>
+						<img src="/vfile/img/over-2.png" width="100%" />
+						<!-- <h2>很抱歉</h2><p>该号码验证失败<br>还有<em>2</em>次输入机会</p> -->
 					</div>
 				</div>
 
@@ -140,7 +141,7 @@ top: 30%; z-index: 11; width: 100%;
 
     pfun.loadingFnDoing(LoadingImg, function(){
     	if(coachEinviteMethod.count <= 0){
-    		$(".errorTips .etcon em").html(coachEinviteMethod.count);
+    		$(".errorTips .etcon").html( '<img src="/vfile/img/over-'+ coachEinviteMethod.count +'.png" width="100%" />' );
     		coachEinviteMethod.btnShow();
     		$(".errorTips").css({"visibility": "visible"});
     		$(".slogan").css({"visibility": "hidden"});
@@ -161,12 +162,12 @@ top: 30%; z-index: 11; width: 100%;
 			}
 		},
 		errorFun: function(n){
-			var errorText = "<h2>很抱歉</h2><p>该号码验证失败<br /> 如有疑问，请联系微信客服</p>";
+			var errorText = '<img src="/vfile/img/over-0.png" width="100%" />';
 			if(n <=0){
 				$(".errorTips .etcon").html(errorText);
 				this.btnShow();
 			}else{
-				$(".errorTips .etcon em").html(n);
+				$(".errorTips .etcon").html('<img src="/vfile/img/over-'+ n +'.png" width="100%" />');
 				this.btnShow('re-enter-btn');
 			}
 			$(".errorTips").css({"visibility": "visible"});
