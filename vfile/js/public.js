@@ -1,8 +1,8 @@
 
 var shareArr = {
-    "_title": '“品革新·致匠心”VIP鉴赏会邀请函', //分享标题
-    "_desc": "诚邀您莅临COACH“品革新·致匠心”VIP鉴赏会",    // 分享朋友圈的描述
-    "_desc_friend": "诚邀您莅临COACH“品革新·致匠心”VIP鉴赏会",    // 分享好友的描述
+    "_title": '带你穿越时空，重温美国旧梦', //分享标题
+    "_desc": "诚邀您莅临VIP专场COACH美国旧梦早餐会",    // 分享朋友圈的描述
+    "_desc_friend": "诚邀您莅临VIP专场COACH美国旧梦早餐会",    // 分享好友的描述
     "_link": window.location.href,    //分享的连接
     "_imgUrl": "http://" + window.location.host + "/vfile/img/share.png",   //分享的图片
     "_url": encodeURIComponent(window.location)//encodeURIComponent(window.location.href.split("#")[0]) //.replace('http%3A%2F%2F','')
