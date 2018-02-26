@@ -9,7 +9,7 @@ class EventDispatcher {
 		self::$listeners[$event][] = array($listener, $method);
 	} 
 
-	public static function dispatch($event, $event){
+	public static function dispatch($eventName, $event){
 		foreach(self::$listeners as $listeners) {
 			foreach($listeners as $listener) {
 				$method = $listener[1];

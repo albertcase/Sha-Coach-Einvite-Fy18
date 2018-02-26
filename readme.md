@@ -1,3 +1,6 @@
+###发布注意
+db: ./coach_einvite_fy18.sql
+
 ###正式链接
 
 **url:** : /
