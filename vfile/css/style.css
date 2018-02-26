@@ -7,7 +7,7 @@ html, body{
 body{
     position: relative;
     background: #000 url('../img/bg.jpg') no-repeat center top;
-    background-size: 100% auto;
+    background-size: 100% 100%;
     text-align: center;
 
     -webkit-font-smoothing: antialiased;
@@ -212,7 +212,6 @@ body{
     .infoCon{
         margin: 8% 0;
     }
-
 }
 
 /* 6 */
